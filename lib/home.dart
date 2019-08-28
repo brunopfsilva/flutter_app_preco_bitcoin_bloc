@@ -21,22 +21,29 @@ class _homePageState extends State<homePage> {
 
   @override
   void initState() {
+    //inicia o stream
     bloc = homeBloc();
     super.initState();
   }
-  
+
   @override
   void dispose() {
+    //fecha o stream
     bloc.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Scaffold(
+    return Scaffold(
+        body: StreamBuilder<Object>(
+          stream: bloc.out,
+          builder: (context, snapshot) {
+            return Container(
 
-      ),
-    );
+            );
+          }
+        ),
+      );
   }
 }
