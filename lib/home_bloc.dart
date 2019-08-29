@@ -5,16 +5,16 @@ import 'dart:convert';
 
 class homeBloc {
 
-  double bitcoinPrice = 0;
+  String bitcoinPrice;
 
-  var _priceStreamController = new StreamController<double>();
+  var _priceStreamController = new StreamController<String>();
 
   String url = "https://blockchain.info/ticker";
 
   //saida do stream
-  Stream<double> get out => _priceStreamController.stream;
+  Stream<String> get out => _priceStreamController.stream;
   //entrada do stream
-  Sink<double> get inn => _priceStreamController.sink;
+  Sink<String> get inn => _priceStreamController.sink;
 
 
 
@@ -24,7 +24,7 @@ class homeBloc {
 
     Map<String,dynamic> retorno = json.decode( response.body );
 
-    bitcoinPrice = retorno["BLR"]["buy"];
+    bitcoinPrice = retorno["BRL"]["buy"].toString();
 
     //Entra o preco no stream
     //_priceStreamController.sink.add(bitcoinPrice);

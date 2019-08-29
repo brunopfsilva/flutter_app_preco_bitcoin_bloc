@@ -26,6 +26,10 @@ class _homePageState extends State<homePage> {
 
   @override
   Widget build(BuildContext context) {
+    
+    
+    print("chamada do build");
+    
     return Scaffold(
       body: StreamBuilder<Object>(
           stream: bloc.out,
@@ -35,13 +39,20 @@ class _homePageState extends State<homePage> {
               padding: EdgeInsets.all(32.0),
               child: Center(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image.asset("images/bitcoin.png"),
                     Padding(
                       padding: EdgeInsets.only(top: 30, bottom: 30),
-                      child: Text(
-                        "R\$ " + snapshot.data,
+                      child: snapshot.hasData == null ? Container(child: CircularProgressIndicator(),):
+
+                      Text(
+
+                        "R\$ " + snapshot.data.toString(),
                         style: TextStyle(fontSize: 36),
+
+
+
                       ),
                     ),
                     RaisedButton(
